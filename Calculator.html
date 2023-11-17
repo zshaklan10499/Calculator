@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100%;
+            background: purple;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 60px;
+        }
+
+        .cal-body {
+            border: 2px solid #000;
+            border-radius: 10px;
+            background: #fab;
+            height: 600px;
+            width: 500px;
+        }
+
+        .cal-body input {
+            width: 100%;
+            height: 100px;
+            border-radius: 10px;
+            background: #ccc;
+            color: #000;
+            font-size: 30px;
+            border: 0;
+            outline: none;
+        }
+
+        .row {
+            margin: 30px;
+        }
+
+        .row button {
+            font-size: 70px;
+            background: #000;
+            color: #fff;
+            cursor: pointer;
+            width: 100px;
+            border-radius: 10px;
+            margin-left: 3px;
+        }
+
+        @media only screen and (max-width:700px) {
+            .cal-body {
+                height: 550px;
+                width: 320px;
+            }
+            .row button{
+                width:56px;
+                font-size:60px;
+            }
+            .container{
+                display:flex;
+                align-items: flex-start;
+            }
+            
+        }
+        @media only screen and (max-width:950px) {
+            .container{
+                display:flex;
+                align-items: flex-start;
+            } 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h1>Calculator</h1>
+            <div class="cal-body">
+                <input type="text" id="input">
+                <div class="buttons">
+                    <div class="row">
+                        <button>7</button>
+                        <button>8</button>
+                        <button>9</button>
+                        <button id="mult">*</button>
+                    </div>
+                    <div class="row">
+                        <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
+                        <button id="minus">-</button>
+                    </div>
+                    <div class="row">
+                        <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button id="plus">+</button>
+                    </div>
+                    <div class="row">
+                        <button id="clear">C</button>
+                        <button>0</button>
+                        <button id="equal">=</button>
+                        <button id="division">/</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let string = '';
+        let buttons = document.querySelectorAll('.buttons');
+        let input = document.querySelector('#input');
+
+        Array.from(buttons).forEach((button) => {
+            button.addEventListener('click', (e) => {
+                if (e.target.innerHTML == '=') {
+                    string = eval(string);
+                    input.value = string;
+                }
+                else if (e.target.innerHTML == 'C') {
+                    string = '';
+                    input.value = string;
+                }
+                else {
+                    string = string + e.target.innerHTML;
+                    input.value = string;
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
